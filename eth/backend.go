@@ -343,12 +343,6 @@ func (s *Ethereum) APIs() []rpc.API {
 			Service:   s.netRPCService,
 			Public:    true,
 		},
-		{
-			Namespace: "nova",
-			Version:   "1.0",
-			Service:   s.netRPCService,
-			Public:    true,
-		},
 	}...)
 }
 
