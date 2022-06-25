@@ -7,6 +7,13 @@
 # This script requires elevated access privileged (CHMOD 777), please run:
 # chmod 777 nodeInstallForce.sh before launching, and then bash nodeInstallForce.sh to start.
 
+# Cleaning up previous installations.
+echo "Cleaning any traces of previous installations..."
+echo "You may see some error messages, but they shouldn't affect the installation."
+sudo rm -r ../.ethereum
+sudo rm -r ../../usr/bin/novanetwork
+sudo rm -r /usr/bin/novanetwork
+
 # Install a backup instance of Go-Ethereum for dependencies.
 echo "Installing 1/5 - Downloading dependencies..."
 sudo apt-get upgrade

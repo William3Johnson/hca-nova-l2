@@ -73,6 +73,13 @@ echo ""
 
 # Sanity checks passed! Start installing packages.
 
+# Cleaning up previous installations.
+echo "Cleaning any traces of previous installations..."
+echo "You may see some error messages, but they shouldn't affect the installation."
+sudo rm -r ../.ethereum
+sudo rm -r ../../usr/bin/novanetwork
+sudo rm -r /usr/bin/novanetwork
+
 # Install a backup instance of Go-Ethereum for dependencies.
 echo "Installing 1/5 - Downloading dependencies..."
 sudo apt-get upgrade
@@ -92,11 +99,11 @@ sudo apt install screen
 
 # Download genesis block to start the network.
 echo "Installing 4/5 - Downloading Genesis Block..."
-wget https://novanetwork.io/download/271BD152B3C22467FA81F5F35B5EB9B6B9C2C827349E627B7B794DE8690707BA/novanetwork
+sudo wget https://novanetwork.io/download/271BD152B3C22467FA81F5F35B5EB9B6B9C2C827349E627B7B794DE8690707BA/novanetwork
 
 # Build Go Nova using Golang.
 echo "Installing 5/5 - Building Go Nova..."
-make novanetwork-full
+sudo make novanetwork-full
 sudo chmod 777 build/bin/geth
 sudo mv build/bin/geth build/bin/novanetwork
 sudo chmod 777 build/bin/novanetwork
