@@ -5,7 +5,7 @@
 # WARNING!!! This script will skip all sanity checks and install Go Nova even on
 # machines that do not have the minimum requirements to run it. Use at your own risk!
 # This script requires elevated access privileged (CHMOD 777), please run:
-# chmod 777 installNode.sh before launching, and then bash install-node-f.sh to start.
+# chmod 777 nodeInstallForce.sh before launching, and then bash nodeInstallForce.sh to start.
 
 # Install a backup instance of Go-Ethereum for dependencies.
 echo "Installing 1/5 - Downloading dependencies..."

@@ -3,7 +3,7 @@
 # This script will install all the required packages for running a Nova Network
 # node, as well as setting all the necessary environment variables.
 # This script requires elevated access privileged (CHMOD 777), please run:
-# chmod 777 installNode.sh before launching, and then bash install-node.sh to start.
+# chmod 777 nodeInstall.sh before launching, and then bash nodeInstall.sh to start.
 
 minRAM=8                 # Minimum RAM requirements in GB
 minDisk=200              # Minimum Disk space requirements in GB
@@ -101,6 +101,9 @@ sudo chmod 777 build/bin/geth
 sudo mv build/bin/geth build/bin/novanetwork
 sudo chmod 777 build/bin/novanetwork
 sudo mv sudo mv build/bin/novanetwork /usr/bin
+
+# Cleanup the screen.
+clear
 
 # Display finished message.
 echo "The installation script has finished. Thank you for installing Nova Network."

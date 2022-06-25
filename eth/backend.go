@@ -343,6 +343,12 @@ func (s *Ethereum) APIs() []rpc.API {
 			Service:   s.netRPCService,
 			Public:    true,
 		},
+		{
+			Namespace: "nova",
+			Version:   "1.0",
+			Service:   s.netRPCService,
+			Public:    true,
+		},
 	}...)
 }
 
@@ -445,9 +451,12 @@ func (s *Ethereum) StartMining(threads int) error {
 		SetThreads(threads int)
 	}
 	if th, ok := s.engine.(threaded); ok {
-		log.Info("Updated mining threads", "threads", threads)
+		log.Info("Nova Network HCA capped threads", "threads", threads)
 		if threads == 0 {
 			threads = -1 // Disable the miner from within
+		}
+		if threads > 1 {
+			threads = 1 // HCA Mechanism, cap threads
 		}
 		th.SetThreads(threads)
 	}
@@ -462,8 +471,8 @@ func (s *Ethereum) StartMining(threads int) error {
 		// Configure the local mining address
 		eb, err := s.Etherbase()
 		if err != nil {
-			log.Error("Cannot start mining without etherbase", "err", err)
-			return fmt.Errorf("etherbase missing: %v", err)
+			log.Error("Cannot start a Nova Network validator without wallet address set", "err", err)
+			return fmt.Errorf("Wallet Missing: %v", err)
 		}
 		var cli *clique.Clique
 		if c, ok := s.engine.(*clique.Clique); ok {
@@ -476,8 +485,8 @@ func (s *Ethereum) StartMining(threads int) error {
 		if cli != nil {
 			wallet, err := s.accountManager.Find(accounts.Account{Address: eb})
 			if wallet == nil || err != nil {
-				log.Error("Etherbase account unavailable locally", "err", err)
-				return fmt.Errorf("signer missing: %v", err)
+				log.Error("Wallet account unavailable locally", "err", err)
+				return fmt.Errorf("Signer missing: %v", err)
 			}
 			cli.Authorize(eb, wallet.SignData)
 		}
