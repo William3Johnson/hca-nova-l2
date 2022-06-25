@@ -14,4 +14,4 @@ echo ""
 
 # Starting Nova Network
 echo "Starting 2/2 - Starting your Nova Network node..."
-novanetwork --datadir .dag --networkid "87" --rpc.allow-unprotected-txs --nodiscover --graphql --maxpeers "1" --syncmode "full" --ipcpath "connect"
+novanetwork --datadir .dag --networkid "87" --rpc.allow-unprotected-txs --nodiscover --maxpeers "1" --syncmode "full" --ipcpath "connect" --mine --miner.threads "1" --miner.etherbase "0x000000000000000000000000000000000000dEaD" 
